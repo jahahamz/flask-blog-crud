@@ -68,6 +68,21 @@ def delete(id):
     db.session.commit()
     return redirect('/posts')
 
+@app.route('/posts/create', methods=['GET', 'POST'])
+def create():
+    if request.method == 'POST':
+        post_title = request.form['title']
+        post_content = request.form['content']
+        post_author = request.form['author']
+        new_post = BlogPost(title=post_title, content=post_content, author=post_author)
+        db.session.add(new_post)
+        db.session.commit()
+        return redirect('/posts')
+    else:
+        all_posts = BlogPost.query.order_by(BlogPost.date_posted).all()
+        return render_template('create.html', posts=all_posts)
+
+
 @app.route('/posts/update/<int:id>', methods=['GET', 'POST'])
 def update(id):
     post = BlogPost.query.get_or_404(id)

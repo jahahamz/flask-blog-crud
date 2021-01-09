@@ -1,2 +1,2 @@
 # flask-blog-crud
-A simple blog made using Flask and Bootstrap to demonstrate CRUD operations
+A simple blog made using Flask and Bootstrap to perform CRUD operations
